@@ -8,7 +8,7 @@ services:
       - ./app/frontend:/var/www/html/frontend
       - ./config/virtualhosts/peliculas.com:/etc/nginx/sites-enabled/peliculas.com
     ports:
-      - "8080:80"
+      - "80:80"
   backend:
     build:
       context: .
@@ -17,13 +17,13 @@ services:
       - ./app/backend:/var/www/html/backend
       - ./config/virtualhosts/peliculas.api.com:/etc/nginx/sites-enabled/peliculas.api.com
     ports:
-      - "8081:80"
+      - "8080:80"
     links:
       - db
   db:
     image: mysql:8.0.35-debian
     ports: 
-      - "3307:3306"
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=1234
       - MYSQL_DATABASE=films
